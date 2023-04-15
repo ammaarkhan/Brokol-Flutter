@@ -1,3 +1,5 @@
+import 'package:brokol_flutter/listpage.dart';
+import 'package:brokol_flutter/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,12 +11,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.listRoute,
+      routes: {
+        // "/": (context) => LoginPage(),
+        MyRoutes.listRoute: (context) => ListPage(),
+      },
     );
   }
 }
