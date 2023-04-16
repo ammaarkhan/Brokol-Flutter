@@ -18,6 +18,28 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   var _category = Category();
   var _categoryService = CategoryService();
 
+  List<Category> _categoryList = <Category>[];
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
+
+  getAllCategories() async {
+    _categoryList = <Category>[];
+    var categories = await _categoryService.readCategories();
+    categories.forEach((category) {
+      setState(() {
+        var categoryModel = Category();
+        categoryModel.name = category['name'];
+        categoryModel.description = category['description'];
+        categoryModel.id = category['id'];
+        _categoryList.add(categoryModel);
+      });
+    });
+  }
+
   _showFormDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -38,10 +60,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.green,
                 ),
-                onPressed: () {
+                onPressed: () async {
                   _category.name = _categoryNameController.text;
-                  _category.desc = _categoryDescController.text;
-                  _categoryService.saveCategory(_category);
+                  _category.description = _categoryDescController.text;
+
+                  var result = await _categoryService.saveCategory(_category);
+                  print(result);
                 },
                 child: Text('Save'),
               ),
@@ -82,7 +106,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
         title: Text("Categories"),
       ),
-      body: Center(child: Text("Welcome to Categories screen")),
+      body: ListView.builder(
+          itemCount: _categoryList.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 6, left: 13, right: 13),
+              child: Card(
+                elevation: 5,
+                child: ListTile(
+                  leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(_categoryList[index].name ?? 'empty'),
+                      IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {})
+                    ],
+                  ),
+                  subtitle: Text(_categoryList[index].description ?? 'hello'),
+                ),
+              ),
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showFormDialog(context);
