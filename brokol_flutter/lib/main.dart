@@ -1,4 +1,5 @@
-import 'package:brokol_flutter/listpage.dart';
+import 'package:brokol_flutter/pages/home_page.dart';
+import 'package:brokol_flutter/pages/listpage.dart';
 import 'package:brokol_flutter/utils/routes.dart';
 import 'package:brokol_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // themeMode: ThemeMode.light,
-      theme: MyTheme.lightTheme(context),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.listRoute,
-      routes: {
-        // "/": (context) => LoginPage(),
-        MyRoutes.listRoute: (context) => ListPage(),
-      },
+      home: HomePage(),
     );
   }
 }

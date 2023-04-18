@@ -1,7 +1,6 @@
 import 'package:brokol_flutter/models/category.dart';
 import 'package:brokol_flutter/services/category_service.dart';
 import 'package:flutter/material.dart';
-
 import 'listpage.dart';
 
 class CategoriesScreen extends StatefulWidget {

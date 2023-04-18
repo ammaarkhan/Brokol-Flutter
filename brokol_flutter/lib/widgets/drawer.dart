@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_declarations
 
-import 'package:brokol_flutter/listpage.dart';
+import 'package:brokol_flutter/pages/listpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../categories_screen.dart';
+import '../pages/categories_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
