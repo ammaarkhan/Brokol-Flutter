@@ -1,3 +1,4 @@
+import 'package:brokol_flutter/pages/listpage.dart';
 import 'package:flutter/material.dart';
 
 class GroceryEntry extends StatefulWidget {
@@ -27,6 +28,11 @@ class GroceryEntryState extends State<GroceryEntry> {
               ElevatedButton(
                 onPressed: () {
                   // Handle button 1 press
+                  // Handle button 1 press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ListPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
