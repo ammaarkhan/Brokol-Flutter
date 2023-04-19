@@ -1,3 +1,4 @@
+import 'package:brokol_flutter/pages/items_screen.dart';
 import 'package:brokol_flutter/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,6 +19,11 @@ class _ListPageState extends State<ListPage> {
         title: Text("List Page"),
       ),
       drawer: MyDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ItemScreen())),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
