@@ -4,11 +4,14 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.5 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  intl: ^0.18.1
+  path_provider: ^2.0.14
+  sqflite: ^2.2.6
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,6 @@
-import 'package:brokol_flutter/home_page.dart';
+import 'package:brokol_flutter/pages/home_page.dart';
+import 'package:brokol_flutter/pages/listpage.dart';
+import 'package:brokol_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
