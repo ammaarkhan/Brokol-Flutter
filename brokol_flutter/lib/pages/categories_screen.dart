@@ -227,6 +227,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 50, 116, 106),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context)

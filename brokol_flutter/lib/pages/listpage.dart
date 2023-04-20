@@ -86,6 +86,7 @@ class _ListPageState extends State<ListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("List Page"),
+        backgroundColor: const Color.fromARGB(255, 50, 116, 106),
       ),
       drawer: MyDrawer(),
       body: ListView.builder(

@@ -86,31 +86,38 @@ class _ItemsByCategoryState extends State<ItemsByCategory> {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.widget.category),
+        backgroundColor: const Color.fromARGB(255, 50, 116, 106),
       ),
       body: Column(children: <Widget>[
         Expanded(
             child: ListView.builder(
                 itemCount: _itemList.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                      elevation: 8,
-                      child: ListTile(
-                        leading: IconButton(
-                            icon: Icon(Icons.done_outline),
-                            onPressed: () {
-                              _deleteFormDialog(context, _itemList[index].id);
-                            }),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(_itemList[index].title ?? 'no name'),
-                          ],
-                        ),
-                        subtitle:
-                            Text(_itemList[index].category ?? 'no category'),
-                        trailing:
-                            Text(_itemList[index].expDate ?? 'no exp date'),
-                      ));
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                    child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        elevation: 8,
+                        child: ListTile(
+                          leading: IconButton(
+                              icon: Icon(Icons.done_outline),
+                              onPressed: () {
+                                _deleteFormDialog(context, _itemList[index].id);
+                              }),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(_itemList[index].title ?? 'no name'),
+                            ],
+                          ),
+                          subtitle:
+                              Text(_itemList[index].category ?? 'no category'),
+                          trailing:
+                              Text(_itemList[index].expDate ?? 'no exp date'),
+                        )),
+                  );
                 }))
       ]),
     );
