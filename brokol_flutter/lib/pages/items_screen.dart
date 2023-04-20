@@ -1,4 +1,6 @@
+import 'package:brokol_flutter/models/item.dart';
 import 'package:brokol_flutter/services/category_service.dart';
+import 'package:brokol_flutter/services/item_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -18,6 +20,8 @@ class _ItemScreen extends State<ItemScreen> {
   var _selectedValue;
 
   List<DropdownMenuItem> _categories = [];
+
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -56,9 +60,16 @@ class _ItemScreen extends State<ItemScreen> {
     }
   }
 
+  _showSuccessSnackBar(message) {
+    var _snackBar = SnackBar(content: message);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+    // _globalKey.currentContext!.showSnackBar(_snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       appBar: AppBar(
         title: Text('Add Item'),
       ),
@@ -103,7 +114,25 @@ class _ItemScreen extends State<ItemScreen> {
             height: 20,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () async {
+              var itemObject = Item();
+
+              itemObject.title = _itemNameController.text;
+              itemObject.category = _selectedValue.toString();
+              itemObject.isFinished = 0;
+              itemObject.expDate = _itemExpiryController.text;
+
+              var _itemService = ItemService();
+              var result = await _itemService.saveItem(itemObject);
+
+              if (result > 0) {
+                // Navigator.pop(context);
+                // getAllCategories();
+                _showSuccessSnackBar(Text('Created'));
+              }
+
+              print(result);
+            },
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.green,

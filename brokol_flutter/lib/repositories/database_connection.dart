@@ -14,5 +14,9 @@ class DatabaseConnection {
   _onCreatingDatatbase(Database database, int version) async {
     await database.execute(
         "CREATE TABLE categories(id INTEGER PRIMARY KEY, name TEXT, description TEXT)");
+
+    // create item table
+    await database.execute(
+        'CREATE TABLE items(id INTEGER PRIMARY KEY, title TEXT, category TEXT, expDate TEXT, isFinished INT)');
   }
 }
