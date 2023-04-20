@@ -24,13 +24,19 @@ class ItemService {
   //   return await _repository!.readDataById('categories', categoryId);
   // }
 
-  // // update data from table
+  // update data from table
   // updateCategory(Category category) async {
   //   return await _repository!.updateData('categories', category.categoryMap());
   // }
 
-  // // delete data from table
-  // deleteCategory(categoryId) async {
-  //   return await _repository!.deleteData('categories', categoryId);
-  // }
+  // delete data from table
+  deleteItem(itemId) async {
+    return await _repository!.deleteData('items', itemId);
+  }
+
+  // read items by category
+  readItemsByCategory(category) async {
+    return await _repository!
+        .readDataByColumnName('items', 'category', category);
+  }
 }

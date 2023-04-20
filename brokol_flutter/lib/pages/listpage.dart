@@ -44,6 +44,43 @@ class _ListPageState extends State<ListPage> {
     setState(() {});
   }
 
+  _deleteFormDialog(BuildContext context, itemId) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (param) {
+          return AlertDialog(
+            actions: <Widget>[
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green,
+                ),
+                onPressed: () => Navigator.pop(context),
+                child: Text('Cancel'),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.red,
+                ),
+                onPressed: () async {
+                  var result = await _itemService?.deleteItem(itemId);
+                  print(result);
+                  if (result > 0) {
+                    Navigator.pop(context);
+                    getAllItems();
+                    // _showSuccessSnackBar(Text('Deleted'));
+                  }
+                },
+                child: Text('Delete'),
+              ),
+            ],
+            title: Text("Confirm Deletion"),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +99,11 @@ class _ListPageState extends State<ListPage> {
                     borderRadius: BorderRadius.circular(0),
                   ),
                   child: ListTile(
+                    leading: IconButton(
+                        icon: Icon(Icons.done_outline),
+                        onPressed: () {
+                          _deleteFormDialog(context, _itemList[index].id);
+                        }),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[

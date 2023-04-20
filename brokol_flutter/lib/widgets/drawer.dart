@@ -1,3 +1,4 @@
+import 'package:brokol_flutter/pages/items_by_category.dart';
 import 'package:brokol_flutter/pages/listpage.dart';
 import 'package:brokol_flutter/services/category_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,8 +27,16 @@ class _MyDrawerState extends State<MyDrawer> {
     setState(() {
       categories.forEach((category) {
         setState(() {
-          _categoryList.add(ListTile(
-            title: Text(category['name']),
+          _categoryList.add(InkWell(
+            onTap: () => Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ItemsByCategory(
+                          category: category['name'],
+                        ))),
+            child: ListTile(
+              title: Text(category['name']),
+            ),
           ));
         });
       });
@@ -36,7 +45,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final imageURL = "";
+    final imageURL =
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
     return Drawer(
       child: Container(
         child: ListView(

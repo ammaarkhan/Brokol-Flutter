@@ -87,6 +87,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     Navigator.pop(context);
                     getAllCategories();
                   }
+                  _categoryNameController.text = '';
+                  _categoryDescController.text = '';
                 },
                 child: Text('Save'),
               ),
@@ -203,6 +205,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     Navigator.pop(context);
                     getAllCategories();
                     _showSuccessSnackBar(Text('Deleted'));
+                    setState(() {});
                   }
                 },
                 child: Text('Delete'),
