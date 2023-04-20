@@ -40,6 +40,8 @@ class _ListPageState extends State<ListPage> {
       model.isFinished = item['isFinished'];
       _itemList.add(model);
     });
+
+    setState(() {});
   }
 
   @override

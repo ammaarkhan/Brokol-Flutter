@@ -1,4 +1,5 @@
 import 'package:brokol_flutter/models/item.dart';
+import 'package:brokol_flutter/pages/listpage.dart';
 import 'package:brokol_flutter/services/category_service.dart';
 import 'package:brokol_flutter/services/item_service.dart';
 import 'package:flutter/material.dart';
@@ -127,8 +128,9 @@ class _ItemScreen extends State<ItemScreen> {
 
               if (result > 0) {
                 // Navigator.pop(context);
-                // getAllCategories();
                 _showSuccessSnackBar(Text('Created'));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => ListPage()));
               }
 
               print(result);
