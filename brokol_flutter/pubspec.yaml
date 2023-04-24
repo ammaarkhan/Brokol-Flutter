@@ -7,10 +7,13 @@ environment:
   sdk: '>=2.19.5 <3.0.0'
 
 dependencies:
+  camera: ^0.10.4
   flutter:
     sdk: flutter
+  google_mlkit_text_recognition: ^0.6.0
   intl: ^0.18.1
   path_provider: ^2.0.14
+  permission_handler: ^10.2.0
   sqflite: ^2.2.6
 
 dev_dependencies:
